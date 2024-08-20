@@ -20,8 +20,11 @@
                 <Font name="Arial Rounded MT Bold" size="23"></Font>
             </font>
         </Label>
-        <Button fx:id="chat_group" layoutX="30" layoutY="30"
-                onAction="#createGroupchat" text="Create Chat"/>
+        <Label fx:id="connected" layoutX="30" layoutY="50" text="Connected Users">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="16"></Font>
+            </font>
+        </Label>
 
         <Label fx:id="comment" layoutX="220" layoutY="40" text="Send a Message!">
             <font>

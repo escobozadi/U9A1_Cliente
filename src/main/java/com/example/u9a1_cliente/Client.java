@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Client {
     static ArrayList<MyFile> myFiles = new ArrayList<>();
@@ -26,8 +27,6 @@ public class Client {
     public Client(Socket socket, String username) {
         try {
             this.socket = socket;
-            // this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            // this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.dataInputStream = new DataInputStream(socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
@@ -93,7 +92,12 @@ public class Client {
                                     ClientController.addFile(fileId, fileName, fileContentBytes, jFrame, jPanel);
                                 }
                             }
+                            // CONNECTED CLIENTS
+                        } else if (message.equals("SENDING CLIENTS")) {
+                            String clientsConnected = dataInputStream.readUTF();
 
+                            ArrayList<String> list = new ArrayList<>(Arrays.asList(clientsConnected.split(",", -1)));
+                            ClientController.addClients(list, clientList);
                         } else {
                             ClientController.addLabel(message, vBox);
                         }

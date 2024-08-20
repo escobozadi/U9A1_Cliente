@@ -60,6 +60,7 @@ public class ClientController implements Initializable {
     private String username = "Client";
     private File[] fileToSend = new File[1];
     static ArrayList<MyFile> myFiles = new ArrayList<>();
+    static ArrayList<MyFile> connectedClients = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -155,13 +156,10 @@ public class ClientController implements Initializable {
             fileToSend[0] = jFileChooser.getSelectedFile();
             comment.setText("The file you want to send is: " + fileToSend[0].getName());
         }
-
     }
 
     public void attachEmoji(ActionEvent actionEvent) throws IOException {
-    }
 
-    public void createGroupchat(ActionEvent actionEvent) throws IOException {
     }
 
     public static void addClients() {
@@ -194,6 +192,35 @@ public class ClientController implements Initializable {
             public void run() {
                 vBox.getChildren().add(hBoxName);
                 vBox.getChildren().add(hBox);
+            }
+        });
+    }
+
+    public static void addClients(ArrayList<String> clients, VBox vBox) {
+        ArrayList<HBox> clientsConnected = new ArrayList<HBox>();
+
+        for (int i=0;i<clients.size();i++) {
+            HBox hBox = new HBox();
+            hBox.setAlignment(Pos.CENTER_LEFT);
+            hBox.setPadding(new Insets(5, 5, 5, 10));
+
+            Text text = new Text(clients.get(i));
+            TextFlow textFlow = new TextFlow(text);
+            textFlow.setStyle("-fx-background-color: rgb(233,233,235); ");
+            textFlow.setPadding(new Insets(5, 10, 5, 10));
+            hBox.getChildren().add(textFlow);
+
+            clientsConnected.add(hBox);
+        }
+
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                vBox.getChildren().clear();
+                for (HBox clientHbox: clientsConnected) {
+                    vBox.getChildren().add(clientHbox);
+                }
             }
         });
     }
