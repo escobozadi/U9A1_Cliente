@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.u9a1_cliente.LogInController"
+            prefHeight="203.0" prefWidth="555.0">
+    <children>
+        <TextField fx:id="username" layoutX="174.0" layoutY="62.0" prefHeight="29.0" prefWidth="286.0"/>
+        <Text layoutX="42.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Your Name :">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Text>
+        <Button fx:id="login_button" layoutX="429.0" layoutY="132.0" prefHeight="30.0" prefWidth="62.0"
+                onAction="#logInButton" text="LogIn"/>
+    </children>
+</AnchorPane>
